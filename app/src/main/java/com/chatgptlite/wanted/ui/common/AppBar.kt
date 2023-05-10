@@ -12,11 +12,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
+import com.chatgptlite.wanted.R
 import com.chatgptlite.wanted.constants.urlToAvatarGPT
 import com.chatgptlite.wanted.ui.conversations.ui.theme.ChatGPTLiteTheme
 import com.chatgptlite.wanted.ui.theme.BackGroundColor
@@ -37,14 +39,14 @@ fun AppBar(onClickMenu: () -> Unit) {
                     Box {
                         Row(verticalAlignment = Alignment.CenterVertically) {
                             Image(
-                                painter = rememberAsyncImagePainter(urlToAvatarGPT),
+                                painter = painterResource(id = R.drawable.jesus),
                                 modifier = paddingSizeModifier.then(Modifier.clip(RoundedCornerShape(6.dp))),
                                 contentScale = ContentScale.Crop,
                                 contentDescription = null
                             )
                             Spacer(modifier = Modifier.width(8.dp))
                             Text(
-                                text = "ChatGPT",
+                                text = "Talk to God",
                                 textAlign = TextAlign.Center,
                                 fontSize = 16.5.sp,
                                 fontWeight = FontWeight.SemiBold,

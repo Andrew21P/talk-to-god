@@ -4,6 +4,7 @@ import com.chatgptlite.wanted.constants.baseUrlOpenAI
 import com.chatgptlite.wanted.constants.openAIApiKey
 import com.chatgptlite.wanted.data.api.OpenAIApi
 import com.google.gson.GsonBuilder
+import com.localebro.okhttpprofiler.OkHttpProfilerInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -32,6 +33,7 @@ object NetworkModule {
                 request = requestBuilder.build()
                 chain.proceed(request)
             })
+        .addInterceptor(OkHttpProfilerInterceptor())
         .build()
 
     @Singleton

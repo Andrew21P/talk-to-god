@@ -111,6 +111,7 @@ dependencies {
     implementation "com.halilibo.compose-richtext:richtext-commonmark:${richtext_version}"
     implementation "com.halilibo.compose-richtext:richtext-ui-material:${richtext_version}"
     implementation "com.halilibo.compose-richtext:richtext-ui-material3:${richtext_version}"
+    implementation 'com.localebro:okhttpprofiler:1.0.8'
 }
 
 // Allow references to generated code

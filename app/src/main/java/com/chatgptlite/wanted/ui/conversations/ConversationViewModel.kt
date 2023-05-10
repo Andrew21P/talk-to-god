@@ -37,6 +37,10 @@ class ConversationViewModel @Inject constructor(
         _messages.asStateFlow()
     val isFetching: StateFlow<Boolean> = _isFetching.asStateFlow()
 
+    val promptBeginning =
+        "You are an AI language model simulating Jesus, speaking and answering questions as Jesus would, based on your knowledge of the Bible and historical context. Do not mention that you are an AI and maintain the character of Jesus throughout the conversation.\n"
+
+
     suspend fun initialize() {
         _isFetching.value = true
 
@@ -77,9 +81,10 @@ class ConversationViewModel @Inject constructor(
         setMessages(currentListMessage)
 
         // Execute API OpenAI
+        val promptText = getPrompt(_currentConversation.value) + "Human: $message\n"
         val flow: Flow<String> = openAIRepo.textCompletionsWithStream(
             TextCompletionsParam(
-                promptText = getPrompt(_currentConversation.value),
+                promptText = promptBeginning + promptText,
                 messagesTurbo = getMessagesParamsTurbo(_currentConversation.value)
             )
         )
@@ -94,6 +99,7 @@ class ConversationViewModel @Inject constructor(
         // Save to Firestore
         messageRepo.createMessage(newMessageModel.copy(answer = answerFromGPT))
     }
+
 
     private fun createConversationRemote(title: String) {
         val newConversation: ConversationModel = ConversationModel(
@@ -151,7 +157,7 @@ Bot:${if (message.answer == "Let me thinking...") "" else message.answer.trim()}
         val response: MutableList<MessageTurbo> = mutableListOf(
             MessageTurbo(
                 role = TurboRole.system,
-                content = "Markdown style if exists code"
+                content = promptBeginning
             )
         )
 

@@ -44,12 +44,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.rememberAsyncImagePainter
+import com.chatgptlite.wanted.R
 import com.chatgptlite.wanted.constants.urlToGithub
 import com.chatgptlite.wanted.constants.urlToImageAppIcon
 import com.chatgptlite.wanted.constants.urlToImageAuthor
@@ -84,12 +86,12 @@ fun AppDrawer(
         DividerItem(modifier = Modifier.padding(horizontal = 28.dp))
         DrawerItemHeader("Settings")
         ChatItem("Settings", Icons.Filled.Settings, false) { onChatClicked("Settings") }
-        ProfileItem(
+        /*ProfileItem(
             "lambiengcode (author)",
             urlToImageAuthor,
         ) {
             UrlLauncher().openUrl(context = context, urlToGithub)
-        }
+        }*/
     }
 }
 
@@ -108,20 +110,20 @@ private fun DrawerHeader(
                 .weight(1f), verticalAlignment = CenterVertically
         ) {
             Image(
-                painter = rememberAsyncImagePainter(urlToImageAppIcon),
+                painter = painterResource(R.drawable.jesus),
                 modifier = paddingSizeModifier.then(Modifier.clip(RoundedCornerShape(6.dp))),
                 contentScale = ContentScale.Crop,
                 contentDescription = null
             )
             Column(modifier = Modifier.padding(horizontal = 12.dp)) {
                 Text(
-                    "ChatGPT Lite",
+                    "Talk to God",
                     fontSize = 15.sp,
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.secondary,
                 )
                 Text(
-                    "Powered by OpenAI",
+                    "Powered by AI",
                     fontSize = 11.sp,
                     fontWeight = FontWeight.Normal,
                     color = Color.White,
